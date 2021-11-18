@@ -5,7 +5,7 @@ import pandas as pd
 #each dict contains sent id, text, opinion
 #['opinions'] contains a list of dicts
 #['opinions'] can be of arbitrary len including 0
-def build_df():
+def build_df() -> pd.DataFrame:
     dataset = "../data/opener_en/train.json"
     with open(dataset) as f:
         data=json.load(f)
@@ -39,11 +39,11 @@ def build_df():
         return df
 
     df = build_clean_df()
-    relevant = df.filter(['Polar_expression','Polarity', 'Source', 'Target'], axis=1)
+    relevant = df.filter(['text', 'Polar_expression','Polarity', 'Source', 'Target'], axis=1)
     relevant.Polar_expression = relevant.Polar_expression.apply(lambda value : value[0][0])
     relevant.Source = relevant.Source.apply(lambda value : None if not value or not value[0] else value[0][0])
     relevant.Target = relevant.Target.apply(lambda value : None if not value or not value[0] else value[0][0])
-    relevant = relevant.dropna()
+    relevant.dropna(inplace=True)
     return relevant
 #relevant.Target = relevant.Target.apply(lambda value : (None, value[0][0])[!value[0]])
 #print(relevant.T.dropna())
