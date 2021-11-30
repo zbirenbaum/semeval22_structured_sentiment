@@ -25,4 +25,5 @@ X = tm.transform(train_data)
 y = le.transform([x['klass'] for x in train_data])
 m = LinearSVC().fit(X, y)
 
-le.inverse_transform(m.predict(tm.transform(['fuck this assignment'])))[0]
+print(le.inverse_transform(
+    m.predict(tm.transform(['like this assignment'])))[0])
