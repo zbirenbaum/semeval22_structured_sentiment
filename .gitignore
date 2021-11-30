@@ -1,3 +1,4 @@
 modelsrc/training_tweets.csv
 modelsrc/training_tweets_processed.csv
-
+modelsrc/pycache
+modelsrc/data
