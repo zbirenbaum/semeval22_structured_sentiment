@@ -28,7 +28,7 @@ from keras.preprocessing.text import Tokenizer
 # In[37]:
 
 
-df=pd.DataFrame(pd.read_csv("../data/training_tweets.csv",encoding='ISO-8859-1',names=['Target','Ids','Date','Flag','User','Text']))
+df=pd.read_csv("../data/training_tweets.csv",encoding='ISO-8859-1',names=np.array(['Target','Ids','Date','Flag','User','Text']))
 df.drop_duplicates(inplace=True, subset="Text")
 df.Text = df.Text.apply(lambda x: re.sub(r'https?:\/\/\S+', '', x))
 df.Text.apply(lambda x: re.sub(r"www\.[a-z]?\.?(com)+|[a-z]+\.(com)", '', x))
