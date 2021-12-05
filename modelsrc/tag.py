@@ -21,6 +21,7 @@ def make_tags(txt, use_stop=False, targeted=True):
     stop_words = set(stopwords.words('english'))
     tokenized = sent_tokenize(txt)
     result = []
+    tagged = []
     for i in tokenized:
         wordsList = nltk.word_tokenize(i)
         wordsList = [
@@ -28,12 +29,19 @@ def make_tags(txt, use_stop=False, targeted=True):
         tagged = nltk.pos_tag(wordsList)
         if targeted:
             tagged = list(filter(lambda c: is_target(c[1]), tagged))
-        result.append(list(set(tagged))) #make unique
+    result = list(set(tagged)) #make unique
     return result
 
 
-def make_txt(txt):
-    return ''.join([tups[0] for tups in make_tags(txt, targeted=True)])
+    #print(make_tags(txt))
+    # print(len(make_tags(txt)))
+    # base = ''
+    # for tup in make_tags(txt, targeted=True):
+    #     if len(tup) > 0 and len(tup[0]) > 0:
+    #         print(tup)
+    #         base.join(tup[0])
+    # return base
+#    return ''.join([tups[0] for tups in make_tags(txt, targeted=True)[0]])
 
 
 def is_verb(token):
