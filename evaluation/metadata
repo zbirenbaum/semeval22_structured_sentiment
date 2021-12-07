@@ -1,2 +1,0 @@
-command: python $program/evaluate.py $input $output
-description: SemEval-2022 shared task on structured sentiment real evaluation program
